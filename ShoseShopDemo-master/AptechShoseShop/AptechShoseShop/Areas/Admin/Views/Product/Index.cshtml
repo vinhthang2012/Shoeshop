@@ -1,0 +1,103 @@
+﻿@model IEnumerable<AptechShoseShop.Models.Entites.Product>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountRatio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountExpiry)
+        </th>
+        <th >
+            @*@Html.DisplayNameFor(model => model.CategoryId)*@
+            <p>Category Name</p>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Images)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ProductImageId)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.StatusId)
+        </th>
+        <th>
+            <p>Option</p>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountRatio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountExpiry)
+        </td>
+        <td >
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Images)*@
+            <img src="@Url.Content(item.Images)" style="height:80px;width:80px;margin:5px" id="previewImage" />
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ProductImageId)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusId)
+        </td>
+        <td>
+            <input type="button" onclick="location.href='@Url.Action("Edit","Product", new { id=item.Id })'" value="EDIT" />
+            <input type="button" onclick="location.href='@Url.Action("Details","Product", new { id=item.Id })'" value="DETAILS" />
+            <input type="button" onclick="location.href='@Url.Action("Delete","Product", new { id=item.Id })'" value="DELETE" />
+            @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+        </td>
+    </tr>
+}
+
+</table>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
